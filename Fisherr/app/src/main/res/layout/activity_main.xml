@@ -7,11 +7,6 @@
     android:background="@drawable/login_background"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,41 +19,51 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/fisherr_logo" />
+            android:src="@drawable/fisherr_logo"
+            android:contentDescription="@string/todo" />
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/logo_frame" />
+            android:src="@drawable/logo_frame"
+            android:contentDescription="@string/todo" />
 
     </FrameLayout>
 
 
     <EditText
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_user"
-        android:hint="Username"
-        android:drawablePadding="10dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="314dp"
         android:background="@drawable/login_edit_background"
-        android:padding="10dp" />
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="10dp"
+        android:hint="@string/username"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:text="" />
 
     <EditText
+        android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:inputType="text"
+        android:text=""
         android:layout_marginBottom="254dp"
         android:background="@drawable/login_edit_background"
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="10dp"
-        android:hint="Password"
-        android:padding="10dp" />
+        android:hint="@string/password"
+        android:padding="10dp"
+        android:autofillHints="" />
 
     <Button
         android:layout_width="match_parent"
@@ -66,8 +71,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="149dp"
         android:background="@drawable/button_background"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textAllCaps="false"
+        android:onClick="handleLogin"
         android:textSize="21sp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"/>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "384694016242",
+    "project_id": "fisherr-3bf90",
+    "storage_bucket": "fisherr-3bf90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384694016242:android:b969b0fcc82a336c7c186b",
+        "android_client_info": {
+          "package_name": "com.marinchevmanolov.fisher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384694016242-3tolf2s9d1edtr2q65trlnqp7vj9ko8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG1rcGVdg32xTteRLSpfSohfa49Qwj03k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384694016242-3tolf2s9d1edtr2q65trlnqp7vj9ko8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
