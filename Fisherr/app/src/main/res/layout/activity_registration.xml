@@ -5,12 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context=".MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
+    tools:context=".RegistrationActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -33,14 +28,13 @@
 
     </FrameLayout>
 
-
     <EditText
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_user"
-        android:hint="Username"
+        android:hint="Email"
         android:drawablePadding="10dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="314dp"
@@ -53,24 +47,37 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="254dp"
+        android:layout_marginBottom="247dp"
         android:background="@drawable/login_edit_background"
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="10dp"
         android:hint="Password"
         android:padding="10dp" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/login_edit_background"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"
+        android:hint="Confirm Password"
+        android:padding="10dp" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="149dp"
-        android:background="@drawable/button_background"
-        android:text="Sign In"
-        android:textAllCaps="false"
-        android:textSize="21sp"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/button_background"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textSize="21sp" />
 
 
 </RelativeLayout>
