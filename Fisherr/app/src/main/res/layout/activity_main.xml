@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -55,7 +55,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:text=""
         android:layout_marginBottom="254dp"
         android:background="@drawable/login_edit_background"
@@ -69,14 +69,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="149dp"
         android:background="@drawable/button_background"
+        android:onClick="handleLogin"
         android:text="@string/sign_in"
         android:textAllCaps="false"
-        android:onClick="handleLogin"
         android:textSize="21sp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"/>
+        app:backgroundTint="#4CAF50" />
 
 
 </RelativeLayout>
