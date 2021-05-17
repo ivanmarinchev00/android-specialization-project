@@ -24,15 +24,15 @@ class AddPostActivity : AppCompatActivity() {
 
         lateinit var fusedLocationProviderClient: FusedLocationProviderClient
         lateinit var locationRequest: LocationRequest
-        val locationTxt = findViewById<View>(R.id.locationTxt) as TextView
-        val addPostBtn = findViewById<Button>(R.id.AddPostBtn) as Button
-
-        private var PERMISSION_ID = 1000
+        var locationTxt : TextView? = null
+            private var PERMISSION_ID = 1000
 
         override fun onCreate(savedInstanceState: Bundle?){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_post);
 
+            val addPostBtn = findViewById<Button>(R.id.AddPostBtn) as Button
+            locationTxt = findViewById<View>(R.id.locationTxt) as TextView
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             addPostBtn.setOnClickListener {
             getLastLocation()
@@ -66,7 +66,7 @@ class AddPostActivity : AppCompatActivity() {
                         NewLocationData()
                     }else{
                         Log.d("Debug:" ,"Your Location:"+ location.longitude)
-                        locationTxt.text = "You Current Location is : Long: "+ location.longitude + " , Lat: " + location.latitude + "\n" + getCityName(location.latitude,location.longitude)
+                        locationTxt?.text = "You Current Location is : Long: "+ location.longitude + " , Lat: " + location.latitude + "\n" + getCityName(location.latitude,location.longitude)
                     }
                 }
             }else{
@@ -111,7 +111,7 @@ class AddPostActivity : AppCompatActivity() {
         override fun onLocationResult(locationResult: LocationResult) {
             var lastLocation: Location = locationResult.lastLocation
             Log.d("Debug:","your last last location: "+ lastLocation.longitude.toString())
-            locationTxt.text = "You Last Location is : Long: "+ lastLocation.longitude + " , Lat: " + lastLocation.latitude + "\n" + getCityName(lastLocation.latitude,lastLocation.longitude)
+            locationTxt?.text = "You Last Location is : Long: "+ lastLocation.longitude + " , Lat: " + lastLocation.latitude + "\n" + getCityName(lastLocation.latitude,lastLocation.longitude)
         }
     }
 

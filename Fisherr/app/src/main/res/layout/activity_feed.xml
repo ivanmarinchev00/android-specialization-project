@@ -67,6 +67,7 @@
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:id="@+id/goAddPostBtn"
         android:text="+"
         android:textAlignment="center"
         android:textSize="25dp"
