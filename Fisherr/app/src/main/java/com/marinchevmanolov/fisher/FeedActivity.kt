@@ -6,7 +6,7 @@ import androidx.viewpager.widget.ViewPager
 
 class FeedActivity : AppCompatActivity() {
     var viewPager: ViewPager? = null
-    var images= intArrayOf(R.drawable.button_background,R.drawable.ic_password)
+    var images= intArrayOf(R.drawable.bg,R.drawable.ic_password)
     var myAdapter: MyAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
