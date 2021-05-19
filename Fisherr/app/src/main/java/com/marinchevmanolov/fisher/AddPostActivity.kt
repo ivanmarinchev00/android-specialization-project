@@ -2,6 +2,7 @@ package com.marinchevmanolov.fisher
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -18,14 +19,22 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.marinchevmanolov.fisher.model.Post
 import java.util.*
-import java.util.jar.Manifest
 
 class AddPostActivity : AppCompatActivity() {
 
         lateinit var fusedLocationProviderClient: FusedLocationProviderClient
         lateinit var locationRequest: LocationRequest
         lateinit var filepath : Uri
+        lateinit var postTitle: String
+        lateinit var postDescription: String
+        lateinit var postDateTime: Date
+        var longtitude: Double = 0.1
+        var latitude: Double = 0.1
         var locationTxt : TextView? = null
         var imageUpload : ImageView? = null
             private var PERMISSION_ID = 1000
@@ -37,6 +46,8 @@ class AddPostActivity : AppCompatActivity() {
             val addPostBtn = findViewById<Button>(R.id.AddPostBtn) as Button
             imageUpload = findViewById<ImageView>(R.id.imageUpload) as ImageView
             locationTxt = findViewById<View>(R.id.locationTxt) as TextView
+            var editTextDescription = findViewById<TextInputEditText>(R.id.editTextDescription) as TextInputEditText
+            var textViewTitle = findViewById<TextInputEditText>(R.id.textViewTitle) as TextInputEditText
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             locationTxt!!.setOnClickListener {
             getLastLocation()
@@ -44,7 +55,56 @@ class AddPostActivity : AppCompatActivity() {
             imageUpload!!.setOnClickListener {
                 startFileChooser()
             }
+            addPostBtn.setOnClickListener {
+                postTitle = textViewTitle.text.toString()
+                postDescription = editTextDescription.text.toString()
+                uploadFile()
+                val intent = Intent(this, FeedActivity::class.java)
+                startActivity(intent);
+            }
         }
+
+    private fun uploadFile() {
+        val calendar = Calendar.getInstance()
+        postDateTime = calendar.time;
+        val coordinates = listOf<Double>(longtitude, latitude)
+        val db = FirebaseFirestore.getInstance()
+        if(postDescription != null && postTitle != null && longtitude != 0.1 && filepath != null){
+            val images = listOf<String>(filepath.toString())
+            val post = Post(postTitle, postDescription, postDateTime, coordinates, images)
+
+            var pd = ProgressDialog(this)
+            pd.setTitle("Uploading")
+            pd.show()
+
+            var imageRef = FirebaseStorage.getInstance().reference.child("posts/catch.jpg")
+            imageRef.putFile(filepath)
+                    .addOnSuccessListener {
+                        pd.dismiss()
+                        Toast.makeText(applicationContext, "Post uploaded", Toast.LENGTH_LONG).show()
+                        System.out.println("SUCESSS!!!!")
+                    }
+                    .addOnFailureListener { p0->
+                        pd.dismiss()
+                        Toast.makeText(applicationContext, p0.message, Toast.LENGTH_LONG).show()
+                        System.out.println("FAAAAIIIILLL!!!!")
+                    }
+                    .addOnProgressListener { p0 ->
+                        var progress = (100 * p0.bytesTransferred) / p0.totalByteCount
+                        pd.setMessage("Uploaded ${progress.toInt()}%")
+                    }
+            db.collection("posts")
+                    .add(post)
+                    .addOnSuccessListener {
+                        Toast.makeText(this@AddPostActivity, "Post added successfully", Toast.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this@AddPostActivity, "Post failed to upload", Toast.LENGTH_LONG).show()
+                    }
+        } else {
+            Toast.makeText(this@AddPostActivity, "Please fill all fields and select a picture and coordinates", Toast.LENGTH_LONG).show()
+        }
+    }
 
     private fun startFileChooser() {
         var i = Intent()
@@ -90,6 +150,9 @@ class AddPostActivity : AppCompatActivity() {
                     }else{
                         Log.d("Debug:" ,"Your Location:"+ location.longitude)
                         locationTxt?.text = "Long: "+ location.longitude + " , Lat: " + location.latitude
+                        longtitude = location.longitude
+                        latitude = location.latitude
+
                     }
                 }
             }else{
