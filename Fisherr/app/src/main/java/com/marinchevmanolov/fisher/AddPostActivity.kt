@@ -1,19 +1,20 @@
 package com.marinchevmanolov.fisher
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
@@ -24,7 +25,9 @@ class AddPostActivity : AppCompatActivity() {
 
         lateinit var fusedLocationProviderClient: FusedLocationProviderClient
         lateinit var locationRequest: LocationRequest
+        lateinit var filepath : Uri
         var locationTxt : TextView? = null
+        var imageUpload : ImageView? = null
             private var PERMISSION_ID = 1000
 
         override fun onCreate(savedInstanceState: Bundle?){
@@ -32,12 +35,32 @@ class AddPostActivity : AppCompatActivity() {
             setContentView(R.layout.activity_post);
 
             val addPostBtn = findViewById<Button>(R.id.AddPostBtn) as Button
+            imageUpload = findViewById<ImageView>(R.id.imageUpload) as ImageView
             locationTxt = findViewById<View>(R.id.locationTxt) as TextView
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-            addPostBtn.setOnClickListener {
+            locationTxt!!.setOnClickListener {
             getLastLocation()
             }
+            imageUpload!!.setOnClickListener {
+                startFileChooser()
+            }
         }
+
+    private fun startFileChooser() {
+        var i = Intent()
+        i.setType("image/*")
+        i.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(i, "Choose Picture"), 111)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode===111 && resultCode == Activity.RESULT_OK && data != null){
+            filepath = data.data!!
+            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filepath)
+            imageUpload?.setImageBitmap(bitmap)
+        }
+    }
 
 
     fun getLastLocation(){
@@ -66,7 +89,7 @@ class AddPostActivity : AppCompatActivity() {
                         NewLocationData()
                     }else{
                         Log.d("Debug:" ,"Your Location:"+ location.longitude)
-                        locationTxt?.text = "You Current Location is : Long: "+ location.longitude + " , Lat: " + location.latitude + "\n" + getCityName(location.latitude,location.longitude)
+                        locationTxt?.text = "Long: "+ location.longitude + " , Lat: " + location.latitude
                     }
                 }
             }else{
