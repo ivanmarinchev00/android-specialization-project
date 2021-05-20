@@ -6,4 +6,6 @@
     <string name="username">Username</string>
     <string name="text">text</string>
     <string name="textview">TextView</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

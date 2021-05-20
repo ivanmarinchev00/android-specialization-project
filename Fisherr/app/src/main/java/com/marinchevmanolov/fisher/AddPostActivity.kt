@@ -14,11 +14,15 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.gms.location.*
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -33,6 +37,7 @@ class AddPostActivity : AppCompatActivity() {
         lateinit var postTitle: String
         lateinit var postDescription: String
         lateinit var postDateTime: Date
+        lateinit var toggle: ActionBarDrawerToggle
         var longtitude: Double = 0.1
         var latitude: Double = 0.1
         var locationTxt : TextView? = null
@@ -42,6 +47,18 @@ class AddPostActivity : AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_post);
+
+            val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+            val navView: NavigationView = findViewById(R.id.navView)
+            toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+            drawerLayout.addDrawerListener(toggle)
+            toggle.syncState()
+            supportActionBar?.setDisplayHomeAsUpEnabled(true);
+
+            navView.setNavigationItemSelectedListener {
+                navigateSideMenu(it.itemId);
+
+            }
 
             val addPostBtn = findViewById<Button>(R.id.AddPostBtn) as Button
             imageUpload = findViewById<ImageView>(R.id.imageUpload) as ImageView
@@ -63,6 +80,26 @@ class AddPostActivity : AppCompatActivity() {
                 startActivity(intent);
             }
         }
+
+        private fun navigateSideMenu(id: Int): Boolean {
+            if(id == R.id.miItem1){
+                val intent = Intent(this, FeedActivity::class.java)
+                startActivity(intent)
+                return true
+            } else if(id == R.id.miItem2){
+
+            } else if(id == R.id.miItem3){
+
+            }
+                return false
+        }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun uploadFile() {
         var postsCount = 0;
@@ -114,6 +151,7 @@ class AddPostActivity : AppCompatActivity() {
         var i = Intent()
         i.setType("image/*")
         i.setAction(Intent.ACTION_GET_CONTENT)
+        i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         startActivityForResult(Intent.createChooser(i, "Choose Picture"), 111)
     }
 

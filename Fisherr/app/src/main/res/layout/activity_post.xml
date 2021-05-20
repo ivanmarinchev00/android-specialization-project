@@ -1,104 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".AddPostActivity"
     android:background="@drawable/background">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="54dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginBottom="193dp"
-        android:background="@drawable/text_input_background"
-        android:hint="Write Here"
-        android:shadowColor="#FFFFFF"
-        android:textColorLink="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="359dp"
-        android:text="Description:"
-        android:textSize="30dp" />
-
-    <ImageView
-        android:id="@+id/imageUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="545dp"
-        android:background="@color/white"
-        app:srcCompat="@drawable/unnamed" />
-
-    <TextView
-        android:id="@+id/locationTxt"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="95dp"
-        android:layout_marginEnd="134dp"
-        android:layout_marginBottom="119dp"
-        android:text="Tap to turn into your location"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79"
-        tools:layout_editor_absoluteX="124dp"
-        android:textSize="20dp"/>
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/AddPostBtn"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="54dp"
+            android:layout_marginEnd="58dp"
+            android:layout_marginBottom="193dp"
+            android:background="@drawable/text_input_background"
+            android:hint="Write Here"
+            android:shadowColor="#FFFFFF"
+            android:textColorLink="#FFFFFF" />
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="116dp"
+            android:layout_marginBottom="359dp"
+            android:text="Description:"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/imageUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="43dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="545dp"
+            android:background="@color/greenish"
+            app:srcCompat="@drawable/unnamed" />
+
+        <TextView
+            android:id="@+id/locationTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="119dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="123dp"
+            android:text="Tap to turn into your location"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.79"
+            tools:layout_editor_absoluteX="124dp" />
+
+        <Button
+            android:id="@+id/AddPostBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="137dp"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/button_background"
+            android:text="Add Post"
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="765dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="159dp"
+            android:layout_marginEnd="168dp"
+            android:layout_marginBottom="484dp"
+            android:text="Title:"
+            android:textSize="30dp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textViewTitle"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="58dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginBottom="435dp"
+            android:background="@drawable/text_input_background"
+            android:hint="Write Here" />
+
+    </RelativeLayout>
+
+
+
+
+
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="44dp"
-        android:background="@drawable/button_background"
-        android:text="Add Post"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="765dp" />
+        android:layout_height="match_parent"
+        android:id="@+id/navView"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_drawer_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="159dp"
-        android:layout_marginEnd="168dp"
-        android:layout_marginBottom="484dp"
-        android:text="Title:"
-        android:textSize="30dp" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textViewTitle"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="58dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="435dp"
-        android:background="@drawable/text_input_background"
-        android:hint="Write Here" />
 
-</RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
