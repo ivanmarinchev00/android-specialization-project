@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
     }
+    fun handleGoToReg(view: View?){
+
+        val intent = Intent(this, RegistrationActivity::class.java)
+        startActivity(intent);
+    }
 
 
 }

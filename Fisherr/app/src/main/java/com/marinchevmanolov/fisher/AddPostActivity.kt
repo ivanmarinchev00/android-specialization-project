@@ -65,24 +65,26 @@ class AddPostActivity : AppCompatActivity() {
         }
 
     private fun uploadFile() {
+        var postsCount = 0;
         val calendar = Calendar.getInstance()
         postDateTime = calendar.time;
         val coordinates = listOf<Double>(longtitude, latitude)
         val db = FirebaseFirestore.getInstance()
-        if(postDescription != null && postTitle != null && longtitude != 0.1 && filepath != null){
-            val images = listOf<String>(filepath.toString())
+
+        if(postDescription != "" && postTitle != "" && longtitude != 0.1 && filepath != null){
+            val images = listOf<String>("gs://fisherr-3bf90.appspot.com/posts/img${postTitle}")
             val post = Post(postTitle, postDescription, postDateTime, coordinates, images)
 
             var pd = ProgressDialog(this)
             pd.setTitle("Uploading")
             pd.show()
-
-            var imageRef = FirebaseStorage.getInstance().reference.child("posts/catch.jpg")
+            var imageRef = FirebaseStorage.getInstance().reference.child("posts/img${post.title}.jpg")
             imageRef.putFile(filepath)
                     .addOnSuccessListener {
                         pd.dismiss()
                         Toast.makeText(applicationContext, "Post uploaded", Toast.LENGTH_LONG).show()
                         System.out.println("SUCESSS!!!!")
+
                     }
                     .addOnFailureListener { p0->
                         pd.dismiss()
@@ -101,6 +103,8 @@ class AddPostActivity : AppCompatActivity() {
                     .addOnFailureListener {
                         Toast.makeText(this@AddPostActivity, "Post failed to upload", Toast.LENGTH_LONG).show()
                     }
+
+
         } else {
             Toast.makeText(this@AddPostActivity, "Please fill all fields and select a picture and coordinates", Toast.LENGTH_LONG).show()
         }
